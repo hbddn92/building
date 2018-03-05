@@ -113796,29 +113796,27 @@ var _alarm2 = _interopRequireDefault(_alarm);
 
 var _adminOnRest = require('admin-on-rest');
 
-var _Menu = require('./Menu');
+var _index = require('./calendar/index.js');
 
-var _Menu2 = _interopRequireDefault(_Menu);
-
-var _Calendar = require('./Calendar');
+var _index2 = _interopRequireDefault(_index);
 
 var _authClient = require('../api/authClient');
 
 var _authClient2 = _interopRequireDefault(_authClient);
 
-function _interopRequireDefault(obj) {
-	return obj && obj.__esModule ? obj : { default: obj };
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
-	return _react2.default.createElement(_adminOnRest.Admin, { authClient: _authClient2.default, title: 'Building', restClient: (0, _adminOnRest.jsonServerRestClient)('http://localhost:3333') }, _react2.default.createElement(_adminOnRest.Resource, { name: 'posts', list: _Calendar.Calendar, icon: _alarm2.default }));
+	return _react2.default.createElement(
+		_adminOnRest.Admin,
+		{ authClient: _authClient2.default, title: 'Building', restClient: (0, _adminOnRest.jsonServerRestClient)('http://localhost:3333') },
+		_react2.default.createElement(_adminOnRest.Resource, { name: 'posts', list: _index2.default, icon: _alarm2.default })
+	);
 };
-// import Dashboard	 from './Dashboard';
-// import NotFound		 from './NotFound.jsx';
-// import Menu			 from './Menu.jsx';
+
 exports.default = App;
 
-},{"../api/authClient":967,"./Calendar":969,"./Menu":970,"admin-on-rest":30,"material-ui/svg-icons/action/alarm":673,"react":827}],969:[function(require,module,exports){
+},{"../api/authClient":967,"./calendar/index.js":970,"admin-on-rest":30,"material-ui/svg-icons/action/alarm":673,"react":827}],969:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -113830,8 +113828,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _adminOnRest = require('admin-on-rest');
-
 var _rcCalendar = require('rc-calendar');
 
 var _rcCalendar2 = _interopRequireDefault(_rcCalendar);
@@ -113841,43 +113837,29 @@ function _interopRequireDefault(obj) {
 }
 
 var Calendar = exports.Calendar = function Calendar(props) {
-	return _react2.default.createElement('div', null, _react2.default.createElement(_rcCalendar2.default, null), _react2.default.createElement(_adminOnRest.DateField, { source: 'publication_date', showTime: true }), _react2.default.createElement('span', null, '4/23/2017, 11:05:00 PM'));
+	return _react2.default.createElement('div', null, _react2.default.createElement(_rcCalendar2.default, null));
 };
 
-},{"admin-on-rest":30,"rc-calendar":746,"react":827}],970:[function(require,module,exports){
+},{"rc-calendar":746,"react":827}],970:[function(require,module,exports){
 'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = require('react-redux');
-
-var _adminOnRest = require('admin-on-rest');
+var _Calendar = require('./Calendar');
 
 function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
+	return obj && obj.__esModule ? obj : { default: obj };
 }
 
-var Menu = function Menu(_ref) {
-    var resources = _ref.resources,
-        onMenuTap = _ref.onMenuTap,
-        logout = _ref.logout;
-    return _react2.default.createElement('div', null, _react2.default.createElement(_adminOnRest.MenuItemLink, { to: '/posts', primaryText: 'Posts', onClick: onMenuTap }), _react2.default.createElement(_adminOnRest.MenuItemLink, { to: '/comments', primaryText: 'Comments', onClick: onMenuTap }), _react2.default.createElement(_adminOnRest.MenuItemLink, { to: '/custom-route', primaryText: 'Miscellaneous', onClick: onMenuTap }), logout);
+var index = function index(props) {
+	return _react2.default.createElement('div', null, _react2.default.createElement(_Calendar.Calendar, null));
 };
 
-var mapStateToProps = function mapStateToProps(state) {
-    return {
-        resources: (0, _adminOnRest.getResources)(state)
-    };
-};
-exports.default = (0, _reactRedux.connect)(mapStateToProps)(Menu);
+module.exports = index;
 
-},{"admin-on-rest":30,"react":827,"react-redux":772}],971:[function(require,module,exports){
+},{"./Calendar":969,"react":827}],971:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -113892,9 +113874,7 @@ var _App = require('./components/App.jsx');
 
 var _App2 = _interopRequireDefault(_App);
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('app'));
 
